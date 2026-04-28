@@ -14,12 +14,12 @@ app.post("/ai", async (req, res) => {
 
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
-      headers: {
-        "Authorization": Bearer ${API_KEY},
-        "Content-Type": "application/json",
-      },
+    headers: {
+  "Authorization": Bearer ${API_KEY},
+  "Content-Type": "application/json",
+},
       body: JSON.stringify({
-        model: "gpt-4o-mini",
+        model: "gpt-5.4-mini",
         messages: messages,
       }),
     });

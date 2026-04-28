@@ -14,10 +14,10 @@ app.post("/ai", async (req, res) => {
 
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
-    headers: {
-  "Authorization": Bearer ${API_KEY},
-  "Content-Type": "application/json",
-},
+      headers: {
+        Authorization: Bearer ${API_KEY},
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
         model: "gpt-5.4-mini",
         messages: messages,
@@ -27,9 +27,10 @@ app.post("/ai", async (req, res) => {
     const data = await response.json();
     res.json(data);
   } catch (e) {
+    console.log(e);
     res.status(500).json({ error: "Server error" });
   }
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log("Server running on port " + PORT));
+app.listen(PORT, () => console.log("Server running"));

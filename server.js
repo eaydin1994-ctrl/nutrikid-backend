@@ -1,6 +1,5 @@
-import express from "express";
-import fetch from "node-fetch";
-import cors from "cors";
+const express = require("express");
+const cors = require("cors");
 
 const app = express();
 app.use(cors());
@@ -15,11 +14,11 @@ app.post("/ai", async (req, res) => {
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
-        Authorization: Bearer ${API_KEY},
+        Authorization: "Bearer " + API_KEY,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "gpt-5.4-mini",
+        model: "gpt-4o-mini",
         messages: messages,
       }),
     });
@@ -28,9 +27,9 @@ app.post("/ai", async (req, res) => {
     res.json(data);
   } catch (e) {
     console.log(e);
-    res.status(500).json({ error: "Server error" });
+    res.status(500).json({ error: "server error" });
   }
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log("Server running"));
+app.listen(PORT, () => console.log("Server running on " + PORT));
